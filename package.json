@@ -11,8 +11,5 @@
   "description": "",
   "devDependencies": {
     "ts-node": "^10.9.2"
-  },
-  "overrides": {
-    "typescript@>4.0.0 <5": "4.6.4"
   }
 }
