@@ -1,0 +1,27 @@
+name: Renovate
+on:
+  workflow_dispatch:
+
+  # schedule:
+  #   # The "*" (#42, asterisk) character has special semantics in YAML, so this
+  #   # string has to be quoted.
+  #   - cron: '0/15 * * * *'
+jobs:
+  renovate:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v40.2.8
+        with:
+          configurationFile: '.github/renovate-config.js'
+          # Make sure the username in the config file is the one of the account this PAT belongs to
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          LOG_LEVEL: 'debug'
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
