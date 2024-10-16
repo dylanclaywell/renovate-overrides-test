@@ -23,6 +23,15 @@ module.exports = {
     dependencyDashboard: true,
     /** Setting labels will add the given labels to any pull requests created by Renovate */
     labels: ["renovate"],
+    packageRules: [
+      {
+        /** This enables Renovate to update the package.json file as well as the package-lock.json file */
+        description:
+          "Enable bumping npm packages to the latest version within the same major version",
+        matchManagers: ["npm"],
+        rangeStrategy: "bump",
+      },
+    ],
     hostRules: [
       {
         matchHostnames: ["github.com"],
